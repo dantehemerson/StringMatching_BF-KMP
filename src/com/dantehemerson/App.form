@@ -25,7 +25,7 @@
           <text value="Buscar"/>
         </properties>
       </component>
-      <component id="5377a" class="javax.swing.JTextField" binding="textToSearch">
+      <component id="5377a" class="javax.swing.JTextField" binding="patronInput">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="348" height="24"/>
@@ -44,7 +44,12 @@
             <preferred-size width="221" height="26"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <model>
+            <item value="Knuth Morris Patt(KMP)"/>
+            <item value="Fuerza Bruta"/>
+          </model>
+        </properties>
       </component>
       <component id="ca631" class="javax.swing.JLabel">
         <constraints>
@@ -84,7 +89,7 @@
           <text value="Ingrese el texto : "/>
         </properties>
       </component>
-      <component id="39a4b" class="javax.swing.JTextField" binding="text">
+      <component id="39a4b" class="javax.swing.JTextField" binding="textInput">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="10" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="348" height="24"/>
@@ -113,7 +118,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <scrollpane id="4747a">
+          <scrollpane id="4747a" binding="tablaDeFallosPanel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -123,13 +128,14 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="6e21d" class="javax.swing.JTextArea" binding="failureFunctionOutput">
+              <component id="6e21d" class="javax.swing.JTextArea" binding="patronOutput">
                 <constraints/>
                 <properties>
                   <dropMode value="INSERT"/>
                   <editable value="false"/>
                   <enabled value="true"/>
-                  <text value="asdfasdlkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkadf"/>
+                  <font name="Consolas" size="14"/>
+                  <text value=" TANGENTE&#10;-10000001"/>
                   <verifyInputWhenFocusTarget value="true"/>
                   <visible value="true"/>
                 </properties>
@@ -158,9 +164,9 @@
           <text value="i"/>
         </properties>
       </component>
-      <component id="276ba" class="javax.swing.JLabel">
+      <component id="276ba" class="javax.swing.JLabel" binding="labelTablaFallos">
         <constraints>
-          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="1" row-span="1" col-span="10" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Tabla de Fallos :"/>
@@ -210,7 +216,10 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="2" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <borderPainted value="false"/>
               <enabled value="true"/>
+              <focusPainted value="true"/>
+              <selected value="true"/>
               <text value="Primera Ocurrencia"/>
             </properties>
           </component>
