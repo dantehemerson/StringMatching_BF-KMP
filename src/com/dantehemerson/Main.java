@@ -13,6 +13,7 @@ public class Main {
         frame.setContentPane(new App().getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize(new Dimension(800, 350));
+
         frame.pack();
         frame.setVisible(true);
     }

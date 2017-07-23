@@ -13,13 +13,11 @@ public class App {
     private JTextField ingreseseElTextoTextField;
     private JComboBox comboBox1;
     private JTextArea textArea1;
+    private JTextField textField1;
 
     public App() {
 
-
-
     }
-
 
     public JPanel getMainPanel() {
         return mainPanel;
