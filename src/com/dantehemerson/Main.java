@@ -12,7 +12,7 @@ public class Main {
         JFrame frame = new JFrame("String Matching(BF - KMP)");
         frame.setContentPane(new App().getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setMinimumSize(new Dimension(800, 350));
+        frame.setMinimumSize(new Dimension(800, 420));
 
         frame.pack();
         frame.setVisible(true);

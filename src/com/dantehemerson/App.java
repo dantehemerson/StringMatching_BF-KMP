@@ -9,14 +9,27 @@ import java.awt.event.ActionListener;
  */
 public class App {
     private JPanel mainPanel;
-    private JButton button1;
-    private JTextField ingreseseElTextoTextField;
-    private JComboBox comboBox1;
-    private JTextArea textArea1;
-    private JTextField textField1;
+    private JButton searchBtn;
+    private JTextField textToSearch;
+    private JComboBox searchMetod;
+    private JTextArea processOutput;
+    private JTextField positionsOutput;
+    private JRadioButton primeraOcurrenciaRadioButton;
+    private JRadioButton todasLasOcurrenciasRadioButton;
+    private JTextField text;
+    private JTextArea failureFunctionOutput;
+    private JLabel timeOutput;
 
     public App() {
 
+
+
+        searchBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processOutput.setText("Hola fui presionado");
+            }
+        });
     }
 
     public JPanel getMainPanel() {
