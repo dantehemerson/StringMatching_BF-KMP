@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_string_matching(_bf_-_kmp_)" default="compile.module.string_matching(_bf_-_kmp_)">
+  <dirname property="module.string_matching(_bf_-_kmp_).basedir" file="${ant.file.module_string_matching(_bf_-_kmp_)}"/>
+  
+  <property name="module.jdk.home.string_matching(_bf_-_kmp_)" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.string_matching(_bf_-_kmp_)" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.string_matching(_bf_-_kmp_)" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.string_matching(_bf_-_kmp_)" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="string_matching(_bf_-_kmp_).output.dir" value="${module.string_matching(_bf_-_kmp_).basedir}/out/production/String Matching( BF - KMP )"/>
+  <property name="string_matching(_bf_-_kmp_).testoutput.dir" value="${module.string_matching(_bf_-_kmp_).basedir}/out/test/String Matching( BF - KMP )"/>
+  
+  <path id="string_matching(_bf_-_kmp_).module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="string_matching(_bf_-_kmp_).module.production.classpath">
+    <path refid="${module.jdk.classpath.string_matching(_bf_-_kmp_)}"/>
+  </path>
+  
+  <path id="string_matching(_bf_-_kmp_).runtime.production.module.classpath">
+    <pathelement location="${string_matching(_bf_-_kmp_).output.dir}"/>
+  </path>
+  
+  <path id="string_matching(_bf_-_kmp_).module.classpath">
+    <path refid="${module.jdk.classpath.string_matching(_bf_-_kmp_)}"/>
+    <pathelement location="${string_matching(_bf_-_kmp_).output.dir}"/>
+  </path>
+  
+  <path id="string_matching(_bf_-_kmp_).runtime.module.classpath">
+    <pathelement location="${string_matching(_bf_-_kmp_).testoutput.dir}"/>
+    <pathelement location="${string_matching(_bf_-_kmp_).output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.string_matching(_bf_-_kmp_)">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.string_matching(_bf_-_kmp_)">
+    <patternset refid="excluded.from.module.string_matching(_bf_-_kmp_)"/>
+  </patternset>
+  
+  <path id="string_matching(_bf_-_kmp_).module.sourcepath">
+    <dirset dir="${module.string_matching(_bf_-_kmp_).basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.string_matching(_bf_-_kmp_)" depends="compile.module.string_matching(_bf_-_kmp_).production,compile.module.string_matching(_bf_-_kmp_).tests" description="Compile module String Matching( BF - KMP )"/>
+  
+  <target name="compile.module.string_matching(_bf_-_kmp_).production" depends="register.custom.compilers" description="Compile module String Matching( BF - KMP ); production classes">
+    <mkdir dir="${string_matching(_bf_-_kmp_).output.dir}"/>
+    <javac2 destdir="${string_matching(_bf_-_kmp_).output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.string_matching(_bf_-_kmp_)}/javac">
+      <compilerarg line="${compiler.args.string_matching(_bf_-_kmp_)}"/>
+      <bootclasspath refid="string_matching(_bf_-_kmp_).module.bootclasspath"/>
+      <classpath refid="string_matching(_bf_-_kmp_).module.production.classpath"/>
+      <src refid="string_matching(_bf_-_kmp_).module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.string_matching(_bf_-_kmp_)"/>
+    </javac2>
+    
+    <copy todir="${string_matching(_bf_-_kmp_).output.dir}">
+      <fileset dir="${module.string_matching(_bf_-_kmp_).basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.string_matching(_bf_-_kmp_).tests" depends="register.custom.compilers,compile.module.string_matching(_bf_-_kmp_).production" description="compile module String Matching( BF - KMP ); test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.string_matching(_bf_-_kmp_)" description="cleanup module">
+    <delete dir="${string_matching(_bf_-_kmp_).output.dir}"/>
+    <delete dir="${string_matching(_bf_-_kmp_).testoutput.dir}"/>
+  </target>
+</project>
