@@ -17,40 +17,54 @@ public class KMP {
     private ArrayList<Integer> posiciones; // Arreglo con las posiciónes donde se encontro el patron
     String T; // Cadena
     String P; // Patron
-    Integer[] F; // Tabla de falllos
+    int[] F; // Tabla de falllos
     String FString; // Tabla de fallos en String
+    int tiempoProcesamiento;
+    int tiempoBuscar;
+
 
 
     public KMP() {
         posiciones = new ArrayList<>();
-
+        tiempoBuscar = tiempoProcesamiento = 0;
     }
 
 
+    public void generarBusquedas(String S, String W) {
+        F = generarTablaKMP(W);
+        generarCadena();
+        posiciones = buscarTodos(S, W);
+    }
 
-
-    public static int buscar(String S, String W) {
-        int m = 0;
-        int i = 0;
-        int[] T = generarTablaKMP(W); // Generando la tabla de fallos.
-
-        if (S.length() >= W.length()) {
-            while (m <= (S.length() - W.length())) {
-                if (W.charAt(i) == S.charAt(m + i)) {
-                    if (i == (W.length() - 1)) {
-                        return m;
-                    } else {
-                        i++;
-                    }
-                } else {
-                    m = m + i - T[i];
-                    if (i > 0) {
-                        i = T[i];
-                    }
-                }
-            }
+    private void generarCadena() {
+        FString = "";
+        for(int i : F) {
+            FString += Integer.toString(i);
         }
-        return -1;
+    }
+
+    public String obtenerTablaString() {
+        return FString;
+    }
+
+    public int[] obtenerTabla() {
+        return F;
+    }
+
+    public ArrayList<Integer> obtenerPosiciones() {
+        return posiciones;
+    }
+
+    public String obtenerPosicionesString() {
+        String pos = "";
+        for(int i = 0; i < posiciones.size(); i++) {
+            pos += Integer.toString(posiciones.get(i)) + ", ";
+        }
+        return pos;
+    }
+
+    public int obtenerTiempoTotal() {
+        return tiempoBuscar + tiempoProcesamiento;
     }
 
     /**
@@ -58,17 +72,21 @@ public class KMP {
      * @param W Cadena que se quiere buscar.
      * @return Un arreglo con las posiciónes donde se encontró el patrón W.
      */
-    public static ArrayList<Integer> buscarTodos(String S, String W) {
+    public ArrayList<Integer> buscarTodos(String S, String W) {
         int m = 0;
         int i = 0;
         int[] T = generarTablaKMP(W); // Generando la tabla de fallos.
         ArrayList<Integer> posiciones = new ArrayList<>();
+        tiempoBuscar = 0;
 
         if (S.length() >= W.length()) {
+
             while (m <= (S.length() - W.length())) {
+
+                tiempoBuscar++; // Aumenta el tiempo buscar
                 if (W.charAt(i) == S.charAt(m + i)) {
                     if (i == (W.length() - 1)) {
-                        posiciones.add(m);
+                        posiciones.add(m); // Añadiendo la posicion encontrada al arreglo de posiciones encontradas
                         m = m + i - T[i];
                         if (i > 0) {
                             i = T[i];
@@ -87,17 +105,20 @@ public class KMP {
         return posiciones;
     }
 
-    public static int[] generarTablaKMP(String W) {
+    public int[] generarTablaKMP(String W) {
         // Creando el arreglo de enteros de tamaño longitud de la cadena para almacenar la tabla de fallo
+        System.out.println("longitud " + W.length());
         int[] T = new int[W.length()];
+
 
         int pos = 2;
         int cnd = 0;
 
         T[0] = -1;
         T[1] = 0;
-
+        tiempoProcesamiento = 0; // Reinicia el tiempo de procesamiento.
         while (pos <= (W.length() - 1)) {
+            tiempoProcesamiento++; // Aumenta el tiempo (cantidad de veces que compara)
             if (W.charAt(pos - 1) == W.charAt(cnd)) {
                 cnd++; // No se si se analiza antes??
                 T[pos] = cnd;
@@ -113,4 +134,5 @@ public class KMP {
         }
         return T;
     }
+
 }

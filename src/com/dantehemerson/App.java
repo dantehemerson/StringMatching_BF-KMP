@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by Dante on 22/07/2017.
@@ -26,19 +27,22 @@ public class App {
     private String T;
     private String P;
     private int[] F;
+    private KMP kmp;
+
 
     public App() {
-
+        kmp = new KMP();
         searchBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 if(obtenerDatosDeEntrada()) { // Ahora ya se ingreso el texto(T) y el patron(P) correctamente.
-
-                    if(searchMetod.getSelectedIndex() == 1) {
+                    if(searchMetod.getSelectedIndex() == 0) {
+                        kmp.generarBusquedas(T, P);
+                        escribirDatosKmp();
+                    } else {
                         tablaDeFallosPanel.hide();
+
                     }
-                    escribirTablaDeFallos();
 
                 }
 
@@ -82,19 +86,18 @@ public class App {
             // Ahora ya se ingreso el texto(T) y el patron(P) correctamente.
             T = textInput.getText();
             P = patronInput.getText();
+
         }
         return true;
     }
 
-    private void escribirTablaDeFallos() {
-        F = KMP.generarTablaKMP(P);
-        String salida = " ";
-        for(int i : F) {
-            salida += Integer.toString(i);
-        }
+    private void escribirDatosKmp() {
         patronOutput.setText("");
         patronOutput.append("  " + P + "\n");
-        patronOutput.append(salida);
+        patronOutput.append(" " + kmp.obtenerTablaString());
+
+        positionsOutput.setText(kmp.obtenerPosicionesString());
+        timeOutput.setText("Tiempo : " + Integer.toString(kmp.obtenerTiempoTotal()));
 
     }
 
