@@ -136,7 +136,7 @@
                   <editable value="false"/>
                   <enabled value="true"/>
                   <font name="Consolas" size="14"/>
-                  <text value=" TANGENTE&#10;-10000001"/>
+                  <text value=""/>
                   <verifyInputWhenFocusTarget value="true"/>
                   <visible value="true"/>
                 </properties>
@@ -212,7 +212,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="2bf50" class="javax.swing.JRadioButton" binding="primeraOcurrenciaRadioButton" default-binding="true">
+          <component id="2bf50" class="javax.swing.JRadioButton" binding="primeraOcurrenciaRB">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="2" use-parent-layout="false"/>
             </constraints>
@@ -224,7 +224,7 @@
               <text value="Primera Ocurrencia"/>
             </properties>
           </component>
-          <component id="b8219" class="javax.swing.JRadioButton" binding="todasLasOcurrenciasRadioButton" default-binding="true">
+          <component id="b8219" class="javax.swing.JRadioButton" binding="todasLasOcurrenciasRB">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>

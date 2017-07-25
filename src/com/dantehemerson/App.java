@@ -16,8 +16,8 @@ public class App {
     private JComboBox searchMetod;
     private JTextArea processOutput;
     private JTextField positionsOutput;
-    private JRadioButton primeraOcurrenciaRadioButton;
-    private JRadioButton todasLasOcurrenciasRadioButton;
+    private JRadioButton primeraOcurrenciaRB;
+    private JRadioButton todasLasOcurrenciasRB;
     private JTextField textInput;
     private JTextArea patronOutput;
     private JLabel timeOutput;
@@ -28,10 +28,12 @@ public class App {
     private String P;
     private int[] F;
     private KMP kmp;
+    private FuerzaBruta FB;
 
 
     public App() {
         kmp = new KMP();
+        FB = new FuerzaBruta();
         searchBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,7 +43,24 @@ public class App {
                         escribirDatosKmp();
                     } else {
                         tablaDeFallosPanel.hide();
+                        FB.buscar(T, P);
 
+                        if(FB.getPosiciones().isEmpty()) {
+                            positionsOutput.setText("No se encontraron ocurrencias");
+                        } else {
+
+                            if(primeraOcurrenciaRB.isSelected()) {
+                                positionsOutput.setText(FB.getPosiciones().get(0).toString());
+                            }
+                            else{
+                                positionsOutput.setText(FB.getPosicionesString());
+                            }
+                        }
+
+                        timeOutput.setText("Tiempo : " + FB.getTiempo());
+
+                        processOutput.setText("Nada que mostrar");
+                        patronOutput.setText("");
                     }
 
                 }
@@ -79,6 +98,12 @@ public class App {
         }
         else if(patronInput.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Tienes que ingresar una Patron");
+            patronInput.requestFocus();
+            return false;
+        }
+        // Si la cadena tiene una longitud menor a 2, esto ocurre solo si esta en el modo KMP
+        else if(searchMetod.getSelectedIndex() == 0 && patronInput.getText().length() < 2) {
+            JOptionPane.showMessageDialog(null, "La longitud del patron debe ser mayor o igual a 2");
             patronInput.requestFocus();
             return false;
         }
