@@ -98,6 +98,8 @@
         </constraints>
         <properties>
           <editable value="true"/>
+          <focusCycleRoot value="false"/>
+          <focusTraversalPolicyProvider value="false"/>
           <inheritsPopupMenu value="false"/>
           <text value=""/>
           <toolTipText value="Texto (T)"/>

@@ -66,7 +66,7 @@ public class App {
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
-                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     patronInput.requestFocus();
                 }
             }
@@ -114,11 +114,19 @@ public class App {
     }
 
     private void escribirDatosKmp() {
+
         patronOutput.setText("");
         patronOutput.append("  " + P + "\n");
         patronOutput.append(" " + kmp.obtenerTablaString());
 
-        positionsOutput.setText(kmp.obtenerPosicionesString());
+        /// Mostrando las posiciones
+        if(kmp.obtenerPosiciones().isEmpty()) {
+            positionsOutput.setText("No se encontraron ocurrencias");
+        } else{
+            positionsOutput.setText(kmp.obtenerPosicionesString());
+        }
+
+
         timeOutput.setText("Tiempo : " + Integer.toString(kmp.obtenerTiempoTotal()));
         processOutput.setText(kmp.obtenerProcedimiento());
 
@@ -142,6 +150,7 @@ public class App {
                         positionsOutput.setText(FB.getPosiciones().get(0).toString());
                     }
                     else{
+                        FB.buscarTodos(T, P);
                         positionsOutput.setText(FB.getPosicionesString());
                     }
                 }

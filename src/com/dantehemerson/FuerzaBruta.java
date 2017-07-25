@@ -51,11 +51,34 @@ public class FuerzaBruta {
             }
             if(j > P.length() - 1) {
                 posiciones.add(i + 1);
+                return true;
 
             }
         }
         return !posiciones.isEmpty();
     }
+
+
+    boolean buscarTodos(String T, String P) {
+        posiciones.clear();
+        tiempo = 0;
+        int k, i, j;
+        for(i = 0; i <= (T.length() - P.length()) ; i++) {
+            k = i;
+            j = 0;
+            while ((j < P.length() && k < T.length()) && T.charAt(k) == P.charAt(j) && j <= P.length()) {
+                tiempo++;
+                k++;
+                j++;
+            }
+            if(j > P.length() - 1) {
+                posiciones.add(i + 1);
+
+            }
+        }
+        return !posiciones.isEmpty();
+    }
+
 
 }
 
