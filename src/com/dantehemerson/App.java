@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 /**
@@ -34,37 +36,11 @@ public class App {
     public App() {
         kmp = new KMP();
         FB = new FuerzaBruta();
+
         searchBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(obtenerDatosDeEntrada()) { // Ahora ya se ingreso el texto(T) y el patron(P) correctamente.
-                    if(searchMetod.getSelectedIndex() == 0) { // Metodo KMP
-                        kmp.generarBusquedas(T, P);
-                        escribirDatosKmp();
-                    } else {
-                        tablaDeFallosPanel.hide();
-                        FB.buscar(T, P);
-
-                        if(FB.getPosiciones().isEmpty()) {
-                            positionsOutput.setText("No se encontraron ocurrencias");
-                        } else {
-
-                            if(primeraOcurrenciaRB.isSelected()) {
-                                positionsOutput.setText(FB.getPosiciones().get(0).toString());
-                            }
-                            else{
-                                positionsOutput.setText(FB.getPosicionesString());
-                            }
-                        }
-
-                        timeOutput.setText("Tiempo : " + FB.getTiempo());
-
-                        processOutput.setText("Nada que mostrar");
-                        patronOutput.setText("");
-                    }
-
-                }
-
+                buscar();
             }
         });
 
@@ -80,6 +56,27 @@ public class App {
                     labelTablaFallos.setText("TABLA DE FALLOS : _____________________________________________________________");
 
 
+                }
+            }
+        });
+
+
+        /* Cuando se presione enter en este componente el foco se colocara en patronInput*/
+        textInput.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    patronInput.requestFocus();
+                }
+            }
+        });
+        patronInput.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buscar();
                 }
             }
         });
@@ -128,4 +125,33 @@ public class App {
     }
 
 
+    private void buscar() {
+        if(obtenerDatosDeEntrada()) { // Ahora ya se ingreso el texto(T) y el patron(P) correctamente.
+            if(searchMetod.getSelectedIndex() == 0) { // Metodo KMP
+                kmp.generarBusquedas(T, P);
+                escribirDatosKmp();
+            } else {
+                tablaDeFallosPanel.hide();
+                FB.buscar(T, P);
+
+                if(FB.getPosiciones().isEmpty()) {
+                    positionsOutput.setText("No se encontraron ocurrencias");
+                } else {
+
+                    if(primeraOcurrenciaRB.isSelected()) {
+                        positionsOutput.setText(FB.getPosiciones().get(0).toString());
+                    }
+                    else{
+                        positionsOutput.setText(FB.getPosicionesString());
+                    }
+                }
+
+                timeOutput.setText("Tiempo : " + FB.getTiempo());
+
+                processOutput.setText("Nada que mostrar");
+                patronOutput.setText("");
+            }
+
+        }
+    }
 }

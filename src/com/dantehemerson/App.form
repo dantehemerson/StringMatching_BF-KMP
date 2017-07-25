@@ -102,6 +102,9 @@
           <text value=""/>
           <toolTipText value="Texto (T)"/>
         </properties>
+        <clientProperties>
+          <html.disable class="java.lang.Boolean" value="false"/>
+        </clientProperties>
       </component>
       <component id="4dbb7" class="javax.swing.JLabel">
         <constraints>
