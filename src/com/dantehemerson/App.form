@@ -69,6 +69,7 @@
           <component id="b961" class="javax.swing.JTextArea" binding="processOutput">
             <constraints/>
             <properties>
+              <font name="Courier New" size="14"/>
               <text value=""/>
               <verifyInputWhenFocusTarget value="true"/>
               <visible value="true"/>

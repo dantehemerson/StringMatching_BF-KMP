@@ -36,7 +36,7 @@ public class App {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(obtenerDatosDeEntrada()) { // Ahora ya se ingreso el texto(T) y el patron(P) correctamente.
-                    if(searchMetod.getSelectedIndex() == 0) {
+                    if(searchMetod.getSelectedIndex() == 0) { // Metodo KMP
                         kmp.generarBusquedas(T, P);
                         escribirDatosKmp();
                     } else {
@@ -98,6 +98,7 @@ public class App {
 
         positionsOutput.setText(kmp.obtenerPosicionesString());
         timeOutput.setText("Tiempo : " + Integer.toString(kmp.obtenerTiempoTotal()));
+        processOutput.setText(kmp.obtenerProcedimiento());
 
     }
 

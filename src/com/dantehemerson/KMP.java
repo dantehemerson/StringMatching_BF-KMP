@@ -21,6 +21,7 @@ public class KMP {
     String FString; // Tabla de fallos en String
     int tiempoProcesamiento;
     int tiempoBuscar;
+    String procedimiento;
 
 
 
@@ -55,6 +56,9 @@ public class KMP {
         return posiciones;
     }
 
+    public String obtenerProcedimiento() {
+        return procedimiento;
+    }
     public String obtenerPosicionesString() {
         String pos = "";
         for(int i = 0; i < posiciones.size(); i++) {
@@ -78,24 +82,39 @@ public class KMP {
         int[] T = generarTablaKMP(W); // Generando la tabla de fallos.
         ArrayList<Integer> posiciones = new ArrayList<>();
         tiempoBuscar = 0;
+        procedimiento = "";
+        procedimiento += S;
+        procedimiento += "\n";
 
         if (S.length() >= W.length()) {
 
             while (m <= (S.length() - W.length())) {
-
                 tiempoBuscar++; // Aumenta el tiempo buscar
                 if (W.charAt(i) == S.charAt(m + i)) {
-                    if (i == (W.length() - 1)) {
+                    procedimiento += S.charAt(m + i);
+                    if (i == (W.length() - 1)) { // Encontró una ocurrencia
                         posiciones.add(m); // Añadiendo la posicion encontrada al arreglo de posiciones encontradas
                         m = m + i - T[i];
                         if (i > 0) {
                             i = T[i];
                         }
+
+                        procedimiento += "\n";
+                        for(int z = 0; z < m; z++) {
+                            procedimiento += " ";
+                        }
                     } else {
                         i++;
                     }
                 } else {
+                    procedimiento += W.charAt(i);
+                    procedimiento += "\n";
                     m = m + i - T[i];
+                    //salto para comparar tomar este
+                    for(int z = 0; z < m; z++) {
+                        procedimiento += " ";
+                    }
+
                     if (i > 0) {
                         i = T[i];
                     }
@@ -107,7 +126,6 @@ public class KMP {
 
     public int[] generarTablaKMP(String W) {
         // Creando el arreglo de enteros de tamaño longitud de la cadena para almacenar la tabla de fallo
-        System.out.println("longitud " + W.length());
         int[] T = new int[W.length()];
 
 
