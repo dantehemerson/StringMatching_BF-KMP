@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="String Matching( BF - KMP ):jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/String_Matching__BF___KMP___jar</output-path>
+    <root id="archive" name="String Matching( BF - KMP ).jar">
+      <element id="module-output" name="String Matching( BF - KMP )" />
+    </root>
+  </artifact>
+</component>
