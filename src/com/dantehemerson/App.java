@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * Created by Dante on 22/07/2017.
  */
 public class App {
+
     private JPanel mainPanel;
     private JButton searchBtn;
     private JTextField patronInput;
